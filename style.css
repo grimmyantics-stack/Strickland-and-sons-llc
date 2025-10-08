@@ -186,3 +186,6 @@ footer {
     padding: 10px;
   }
 }
+body {
+  background-color: red;
+}
