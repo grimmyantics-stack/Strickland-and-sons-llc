@@ -11,9 +11,8 @@ body, html {
 
 /* Background Image */
 .background {
-  background-image: url('images/background.jpg');
+  background: url('images/background.jpg') no-repeat center center fixed;
   background-size: cover;
-  background-position: center;
   opacity: 0.3; /* Faded effect */
   position: fixed;
   top: 0;
@@ -35,6 +34,161 @@ body, html {
   margin-bottom: 40px;
   animation: fadeIn 2s ease-in-out;
 }
+
+/* Section Style */
+.section {
+  margin: 60px 0;
+}
+
+.image-placeholder {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  margin: 20px 0;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Footer */
+footer {
+  margin-top: 80px;
+  font-size: 1.1em;
+}
+
+a {
+  color: #00ffff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Fade-in Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Hero Image */
+.hero-image {
+  max-width: 600px;
+  margin-top: 50px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 200, 255, 0.5);
+  transition: transform 1s ease, opacity 1s ease, box-shadow 0.5s ease;
+}
+
+.hero-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 50px rgba(0, 255, 200, 0.7);
+}
+
+/* Sections */
+section {
+  margin: 80px auto;
+  max-width: 1000px;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+/* Vibrant headers */
+h1, h2 {
+  background: linear-gradient(90deg, #00eaff, #fffa65);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+/* Gallery layout */
+.gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.image-container {
+  width: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(0, 200, 255, 0.4);
+  border-radius: 15px;
+  padding: 15px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.image-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 25px rgba(255, 250, 100, 0.4);
+}
+
+.image-container img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Email link */
+.email-link {
+  color: #00eaff;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.email-link:hover {
+  color: #fffa65;
+  text-shadow: 0 0 10px rgba(255, 250, 100, 0.7);
+}
+
+/* Animations */
+.fade-in, .slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.2s ease-out;
+}
+
+.fade-in.visible, .slide-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Footer */
+footer {
+  margin-top: 60px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 0.9rem;
+  color: #ccc;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-image {
+    width: 90%;
+  }
+
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  section {
+    padding: 10px;
+  }
+}}
 
 /* Section Style */
 .section {
