@@ -1,0 +1,19 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="pic2-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d3b66;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a508b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a2540;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#pic2-grad)"/>
+  <polygon points="400,150 500,350 300,350" fill="none" stroke="#00ffff" stroke-width="4" opacity="0.5"/>
+  <polygon points="400,200 450,300 350,300" fill="#00d4ff" opacity="0.2"/>
+  <circle cx="250" cy="450" r="60" fill="none" stroke="#00eaff" stroke-width="3" opacity="0.6"/>
+  <circle cx="550" cy="450" r="60" fill="none" stroke="#00eaff" stroke-width="3" opacity="0.6"/>
+  <text x="50%" y="75%" font-family="Arial, sans-serif" font-size="36" fill="#ffffff" text-anchor="middle" opacity="0.7">
+    Quality Results
+  </text>
+  <line x1="100" y1="100" x2="150" y2="150" stroke="#00ffff" stroke-width="2" opacity="0.3"/>
+  <line x1="650" y1="100" x2="700" y2="150" stroke="#00d4ff" stroke-width="2" opacity="0.3"/>
+</svg>
