@@ -1,21 +1,4 @@
 /* ----------------------------- */
-/* Background */
-/* ----------------------------- */
-.background {
-  background: url('images/background.jpg') no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-/* No overlay - full visibility */
-
-/* ----------------------------- */
 /* Night Mode Text Colors & Glow */
 /* ----------------------------- */
 
@@ -53,8 +36,12 @@ body, html {
   overflow-x: hidden;
   scroll-behavior: smooth;
   min-height: 100vh;
-  background: none;
   color: #dff9ff; /* soft, readable blue-white text */
+}
+
+body {
+  background: url('images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 /* ----------------------------- */
