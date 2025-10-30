@@ -1,48 +1,6 @@
 /* ----------------------------- */
-/* Midnight Blue Night Mode Background */
-/* ----------------------------- */
-.background {
-  background: url('images/background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-/* Overlay with deep midnight-blue tone */
-.background::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-      rgba(10, 20, 40, 0.9),
-      rgba(5, 10, 25, 0.95)
-    ),
-    radial-gradient(circle at center, rgba(0, 0, 50, 0.7), rgba(0, 0, 0, 0.9));
-  background-blend-mode: overlay;
-  backdrop-filter: blur(2px);
-}
-
-/* Chrome / WebKit fallback to force darker tone */
-@supports (-webkit-touch-callout: none) {
-  .background::after {
-    background: rgba(5, 10, 25, 0.9) !important;
-    background-blend-mode: multiply !important;
-  }
-}
-
-/* ----------------------------- */
 /* Night Mode Text Colors & Glow */
 /* ----------------------------- */
-body, html {
-  color: #dff9ff; /* soft, readable blue-white text */
-}
 
 h1, h2 {
   background: linear-gradient(90deg, #00ffff, #6de5ff);
@@ -59,4 +17,232 @@ a, .email-link {
 a:hover, .email-link:hover {
   color: #fffa65;
   text-shadow: 0 0 20px rgba(255, 250, 150, 0.8);
+}
+
+/* ----------------------------- */
+/* Base Styles */
+/* ----------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.8;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  min-height: 100vh;
+  color: #dff9ff; /* soft, readable blue-white text */
+}
+
+body {
+  background: url('images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* ----------------------------- */
+/* Main Content Container */
+/* ----------------------------- */
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* ----------------------------- */
+/* Top Section & Image */
+/* ----------------------------- */
+.top-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0 4rem;
+}
+
+.top-image {
+  max-width: 100%;
+  width: 600px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 200, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.top-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 200, 255, 0.5);
+}
+
+/* ----------------------------- */
+/* Section Styles */
+/* ----------------------------- */
+.section {
+  padding: 4rem 2rem;
+  margin: 2rem 0;
+  background: rgba(15, 25, 50, 0.6);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 200, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.section h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.section p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 1rem auto;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* ----------------------------- */
+/* Image Placeholders */
+/* ----------------------------- */
+.image-placeholder {
+  display: block;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  margin: 2rem auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 25px rgba(0, 200, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-placeholder:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 35px rgba(0, 200, 255, 0.5);
+}
+
+/* ----------------------------- */
+/* Contact Section */
+/* ----------------------------- */
+.contact-section {
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.email-link {
+  display: inline-block;
+  font-size: 1.3rem;
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  background: rgba(0, 200, 255, 0.1);
+  border: 2px solid #00eaff;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.email-link:hover {
+  background: rgba(255, 250, 101, 0.2);
+  border-color: #fffa65;
+  transform: translateY(-3px);
+}
+
+/* ----------------------------- */
+/* Footer */
+/* ----------------------------- */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 3rem 1rem;
+  margin-top: 4rem;
+  background: rgba(5, 10, 25, 0.8);
+  border-top: 1px solid rgba(0, 200, 255, 0.3);
+}
+
+footer p {
+  font-size: 0.95rem;
+  color: #8fb9c4;
+}
+
+/* ----------------------------- */
+/* Fade-In Animation */
+/* ----------------------------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----------------------------- */
+/* Responsive Design */
+/* ----------------------------- */
+@media (max-width: 768px) {
+  .section h1 {
+    font-size: 2.2rem;
+  }
+
+  .section h2 {
+    font-size: 1.8rem;
+  }
+
+  .section p {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 3rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .top-image {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .image-placeholder {
+    max-width: 100%;
+  }
+
+  .email-link {
+    font-size: 1.1rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section h1 {
+    font-size: 1.8rem;
+  }
+
+  .section h2 {
+    font-size: 1.5rem;
+  }
+
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  .top-section {
+    margin: 2rem 0 3rem;
+  }
 }
