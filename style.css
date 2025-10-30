@@ -12,7 +12,7 @@
   z-index: -1;
 }
 
-/* Overlay with deep midnight-blue tone */
+/* Overlay with midnight-blue tone */
 .background::after {
   content: "";
   position: absolute;
@@ -21,19 +21,21 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(
-      rgba(10, 20, 40, 0.9),
-      rgba(5, 10, 25, 0.95)
+      rgba(10, 20, 40, 0.5),
+      rgba(5, 10, 25, 0.6)
     ),
-    radial-gradient(circle at center, rgba(0, 0, 50, 0.7), rgba(0, 0, 0, 0.9));
+    radial-gradient(circle at center, rgba(0, 0, 50, 0.3), rgba(0, 0, 0, 0.5));
   background-blend-mode: overlay;
-  backdrop-filter: blur(2px);
 }
 
-/* Chrome / WebKit fallback to force darker tone */
-@supports (-webkit-touch-callout: none) {
+/* Lighter overlay for mobile devices */
+@media (max-width: 768px) {
   .background::after {
-    background: rgba(5, 10, 25, 0.9) !important;
-    background-blend-mode: multiply !important;
+    background: linear-gradient(
+        rgba(10, 20, 40, 0.4),
+        rgba(5, 10, 25, 0.5)
+      );
+    background-blend-mode: normal;
   }
 }
 
