@@ -3,48 +3,682 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Strickland and Sons LLC</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Strickland & Sons LLC — Box Truck Freight & Delivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0D0D0D;
+      --dark:    #141414;
+      --slate:   #1E1E1E;
+      --mid:     #2C2C2C;
+      --muted:   #888;
+      --light:   #DADADA;
+      --white:   #F5F4F0;
+      --amber:   #E8920A;
+      --amber-dk:#B86F05;
+      --amber-lt:#F9C766;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: var(--light);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(232,146,10,0.18);
+    }
+
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--amber); }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber); }
+
+    .nav-cta {
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--amber); color: var(--black);
+      border: none; border-radius: 3px;
+      padding: 9px 20px; cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--amber-lt); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 5% 80px;
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(13,13,13,0.2) 0%, rgba(13,13,13,0.7) 60%, rgba(13,13,13,1) 100%),
+        repeating-linear-gradient(
+          90deg,
+          transparent 0px, transparent 3px,
+          rgba(232,146,10,0.04) 3px, rgba(232,146,10,0.04) 4px
+        );
+    }
+
+    /* Road stripe animation */
+    .hero-stripe {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: repeating-linear-gradient(90deg, var(--amber) 0px, var(--amber) 40px, transparent 40px, transparent 80px);
+      animation: road 3s linear infinite;
+    }
+    @keyframes road { from { background-position: 0 0; } to { background-position: 80px 0; } }
+
+    .hero-eyebrow {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(52px, 9vw, 110px);
+      font-weight: 700;
+      line-height: 0.92;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      max-width: 14ch;
+      margin-bottom: 28px;
+    }
+    .hero h1 em { font-style: normal; color: var(--amber); }
+
+    .hero-sub {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--muted);
+      max-width: 46ch;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--amber); color: var(--black);
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 14px 32px; border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--amber-lt); transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.25); color: var(--light);
+      font-size: 14px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 14px 32px; border-radius: 3px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+
+    /* ── STAT BAR ── */
+    .stat-bar {
+      background: var(--amber);
+      padding: 20px 5%;
+      display: flex; gap: 0; flex-wrap: wrap;
+    }
+    .stat-item {
+      flex: 1; min-width: 140px;
+      text-align: center;
+      padding: 0 20px;
+      border-right: 1px solid rgba(0,0,0,0.18);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 36px; font-weight: 700;
+      color: var(--black); line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(0,0,0,0.6);
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 96px 5%; }
+
+    .section-eyebrow {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700; text-transform: uppercase;
+      line-height: 1; color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .section-body {
+      font-size: 17px; color: var(--muted);
+      max-width: 52ch; line-height: 1.7;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--dark); }
+
+    .services-header { margin-bottom: 56px; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2px;
+    }
+
+    .service-card {
+      background: var(--slate);
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s;
+    }
+    .service-card:hover { background: var(--mid); }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--amber);
+      transition: height 0.3s ease;
+    }
+    .service-card:hover::before { height: 100%; }
+
+    .service-icon {
+      font-size: 28px; margin-bottom: 16px;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px; font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white); margin-bottom: 10px;
+    }
+
+    .service-desc {
+      font-size: 14px; color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── WHY US ── */
+    #why { background: var(--black); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .why-copy .section-body { max-width: 44ch; margin-bottom: 36px; }
+
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .checklist li {
+      display: flex; gap: 14px; align-items: flex-start;
+      font-size: 15px; color: var(--light);
+    }
+    .checklist li::before {
+      content: '✦';
+      color: var(--amber); font-size: 11px;
+      margin-top: 4px; flex-shrink: 0;
+    }
+
+    .why-visual {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+    }
+    .why-tile {
+      background: var(--slate);
+      aspect-ratio: 1;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      position: relative; overflow: hidden;
+    }
+    .why-tile-big {
+      grid-column: span 2;
+      aspect-ratio: 2/1;
+    }
+    .why-tile-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 48px; font-weight: 700;
+      color: var(--amber); line-height: 1;
+    }
+    .why-tile-label {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── HOW IT WORKS ── */
+    #how { background: var(--dark); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2px; margin-top: 56px;
+    }
+
+    .step {
+      background: var(--slate);
+      padding: 32px 24px;
+    }
+
+    .step-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 64px; font-weight: 700;
+      color: rgba(232,146,10,0.18);
+      line-height: 1; margin-bottom: 16px;
+      display: block;
+    }
+
+    .step-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px; font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white); margin-bottom: 8px;
+    }
+
+    .step-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--black); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-top: 56px;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 32px; }
+
+    .contact-item {}
+    .contact-item-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); margin-bottom: 6px;
+    }
+    .contact-item-value {
+      font-size: 18px; font-weight: 500; color: var(--white);
+    }
+    .contact-item-value a { color: var(--white); text-decoration: none; }
+    .contact-item-value a:hover { color: var(--amber); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-field label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      background: var(--slate);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      color: var(--light);
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px;
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus { border-color: var(--amber); }
+    .form-field textarea { resize: vertical; min-height: 100px; }
+    .form-field select option { background: var(--slate); }
+
+    .form-submit {
+      background: var(--amber); color: var(--black);
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 15px 36px; border: none; border-radius: 3px;
+      cursor: pointer; align-self: flex-start;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--amber-lt); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 5%;
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--amber); }
+
+    .footer-copy {
+      font-size: 12px; color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 6%; }
+      .nav-links { display: none; }
+      .hero { padding: 0 6% 64px; }
+      section { padding: 64px 6%; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-visual { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+      .stat-bar { gap: 8px; }
+      .stat-item { min-width: 120px; padding: 12px; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.15); }
+      .stat-item:last-child { border-bottom: none; }
+    }
+
+    /* ── FADE IN ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Main Content -->
-  <main class="content">
-    <!-- Top Image Section -->
-    <div class="top-section fade-in">
-      <img src="images/top-image.jpg" alt="Top Image Placeholder" class="top-image">
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#"><span>S&S</span> Strickland &amp; Sons</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">About</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Get a Quote</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-stripe"></div>
+    <div style="position:relative; z-index:2;">
+      <p class="hero-eyebrow">Box Truck Freight &amp; Delivery</p>
+      <h1>We Move What <em>Matters.</em></h1>
+      <p class="hero-sub">Strickland &amp; Sons LLC delivers reliable, on-time box truck freight across the region — from last-mile delivery to hotshot loads. Licensed, insured, and ready to roll.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Request a Quote</a>
+        <a href="#services" class="btn-ghost">View Services</a>
+      </div>
     </div>
+  </section>
 
-    <!-- Welcome Section -->
-    <section class="section fade-in">
-      <h1>Welcome to Strickland and Sons LLC</h1>
-      <p>[Placeholder for your introduction text]</p>
-    </section>
+  <!-- STAT BAR -->
+  <div class="stat-bar">
+    <div class="stat-item">
+      <span class="stat-number">24/7</span>
+      <span class="stat-label">Availability</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">100%</span>
+      <span class="stat-label">Insured &amp; Licensed</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">Same-Day</span>
+      <span class="stat-label">Rush Options</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">Local</span>
+      <span class="stat-label">Family-Owned</span>
+    </div>
+  </div>
 
-    <!-- Content Sections -->
-    <section class="section fade-in">
-      <img src="images/picture1.jpg" alt="Placeholder Image 1" class="image-placeholder">
-      <p>[Placeholder for second section text]</p>
-    </section>
+  <!-- SERVICES -->
+  <section id="services" class="fade-up">
+    <div class="services-header">
+      <p class="section-eyebrow">What We Do</p>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-body">Whether you need a single delivery or ongoing freight capacity, Strickland &amp; Sons has the equipment and manpower to get it done right.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <span class="service-icon">🚛</span>
+        <p class="service-name">Local Delivery</p>
+        <p class="service-desc">Fast, reliable point-to-point delivery for businesses and individuals in the area. We handle loading and ensure your cargo arrives intact.</p>
+      </div>
+      <div class="service-card fade-up">
+        <span class="service-icon">⚡</span>
+        <p class="service-name">Hotshot Loads</p>
+        <p class="service-desc">Time-sensitive freight that can't wait. We prioritize urgent loads and move fast with no unnecessary stops or delays.</p>
+      </div>
+      <div class="service-card fade-up">
+        <span class="service-icon">🏗️</span>
+        <p class="service-name">Freight Hauling</p>
+        <p class="service-desc">Commercial and industrial freight moved efficiently. Palletized goods, equipment, and oversized items handled with care.</p>
+      </div>
+      <div class="service-card fade-up">
+        <span class="service-icon">📦</span>
+        <p class="service-name">Last-Mile Delivery</p>
+        <p class="service-desc">The final leg of the supply chain done right. We deliver directly to your customers, job sites, or warehouse dock.</p>
+      </div>
+      <div class="service-card fade-up">
+        <span class="service-icon">🔁</span>
+        <p class="service-name">Regular Freight Runs</p>
+        <p class="service-desc">Ongoing contract routes for businesses that need consistent, scheduled freight capacity they can count on every week.</p>
+      </div>
+      <div class="service-card fade-up">
+        <span class="service-icon">🏠</span>
+        <p class="service-name">Moving &amp; Hauling</p>
+        <p class="service-desc">Residential or commercial moves, furniture delivery, junk haul-off — we bring the truck, you bring the list.</p>
+      </div>
+    </div>
+  </section>
 
-    <section class="section fade-in">
-      <img src="images/picture2.jpg" alt="Placeholder Image 2" class="image-placeholder">
-      <p>[Placeholder for third section text]</p>
-    </section>
+  <!-- WHY US -->
+  <section id="why" class="fade-up">
+    <div class="why-grid">
+      <div class="why-copy">
+        <p class="section-eyebrow">Why Choose Us</p>
+        <h2 class="section-title">Built on Trust &amp; Hard Work</h2>
+        <p class="section-body">Strickland &amp; Sons is a family-owned box truck operation. We don't treat your freight like a number — we treat it like it's ours.</p>
+        <ul class="checklist">
+          <li>Fully licensed and insured for your protection</li>
+          <li>Direct communication — you always know where your load is</li>
+          <li>No brokers, no middlemen — you work directly with us</li>
+          <li>Competitive flat-rate and per-mile pricing</li>
+          <li>Flexible scheduling including nights and weekends</li>
+          <li>Clean, well-maintained trucks and professional drivers</li>
+        </ul>
+      </div>
+      <div class="why-visual">
+        <div class="why-tile">
+          <span class="why-tile-num">On Time</span>
+          <span class="why-tile-label">Every Run</span>
+        </div>
+        <div class="why-tile">
+          <span class="why-tile-num">0</span>
+          <span class="why-tile-label">Brokers — Direct Service</span>
+        </div>
+        <div class="why-tile why-tile-big" style="background: var(--amber);">
+          <span class="why-tile-num" style="color: var(--black); font-size: 64px;">Family<br>Owned</span>
+          <span class="why-tile-label" style="color: rgba(0,0,0,0.6);">Strickland &amp; Sons LLC</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section class="section fade-in contact-section">
-      <h2>Get in Touch</h2>
-      <p>If you'd like to get in contact with us, send an email:</p>
-      <a href="mailto:youremail@example.com" class="email-link">youremail@example.com</a>
-    </section>
-  </main>
+  <!-- HOW IT WORKS -->
+  <section id="how" class="fade-up">
+    <p class="section-eyebrow">The Process</p>
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps">
+      <div class="step fade-up">
+        <span class="step-num">01</span>
+        <p class="step-title">Request a Quote</p>
+        <p class="step-desc">Fill out the contact form or call us directly. Tell us what you need moved, where, and when.</p>
+      </div>
+      <div class="step fade-up">
+        <span class="step-num">02</span>
+        <p class="step-title">Get Your Rate</p>
+        <p class="step-desc">We respond fast with a clear, flat-rate quote — no hidden fees, no surprises.</p>
+      </div>
+      <div class="step fade-up">
+        <span class="step-num">03</span>
+        <p class="step-title">We Pick Up</p>
+        <p class="step-desc">Our driver arrives on time, loads your freight carefully, and confirms the route with you.</p>
+      </div>
+      <div class="step fade-up">
+        <span class="step-num">04</span>
+        <p class="step-title">Delivered &amp; Done</p>
+        <p class="step-desc">Your cargo arrives at the destination on schedule. We confirm delivery and follow up to make sure you're satisfied.</p>
+      </div>
+    </div>
+  </section>
 
-  <!-- Footer -->
-  <footer class="fade-in">
-    <p>&copy; 2025 Faith Fased Management. All rights reserved.</p>
+  <!-- CONTACT -->
+  <section id="contact" class="fade-up">
+    <p class="section-eyebrow">Get in Touch</p>
+    <h2 class="section-title">Request a Quote</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <p class="contact-item-label">Phone</p>
+          <p class="contact-item-value"><a href="tel:+10000000000">(000) 000-0000</a></p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-item-label">Email</p>
+          <p class="contact-item-value"><a href="mailto:info@stricklandandsons.com">info@stricklandandsons.com</a></p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-item-label">Hours</p>
+          <p class="contact-item-value" style="font-size:16px; line-height:1.7;">
+            Mon – Fri: 7:00 AM – 7:00 PM<br>
+            Sat – Sun: By Appointment<br>
+            <span style="color: var(--amber); font-size:14px;">Rush &amp; after-hours available</span>
+          </p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-item-label">Service Area</p>
+          <p class="contact-item-value" style="font-size:16px;">Local &amp; regional routes — contact us for your specific corridor.</p>
+        </div>
+      </div>
+
+      <form class="contact-form" action="#" method="POST">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" placeholder="John">
+          </div>
+          <div class="form-field">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" placeholder="Doe">
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="john@example.com">
+        </div>
+        <div class="form-field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-field">
+          <label for="service">Service Needed</label>
+          <select id="service" name="service">
+            <option value="">Select a service...</option>
+            <option>Local Delivery</option>
+            <option>Hotshot Load</option>
+            <option>Freight Hauling</option>
+            <option>Last-Mile Delivery</option>
+            <option>Regular Freight Run</option>
+            <option>Moving &amp; Hauling</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="message">Tell Us About Your Load</label>
+          <textarea id="message" name="message" placeholder="Pickup location, destination, size/weight, date needed..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Request →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo"><span>S&S</span> Strickland &amp; Sons LLC</span>
+    <span class="footer-copy">© 2025 Strickland and Sons LLC. All rights reserved.</span>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
